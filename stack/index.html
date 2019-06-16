@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>栈 (Stack) 的使用 | JunzhouLiu</title>
+    <meta name="description" content="Happy Coding">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.a46dcfd8.css" as="style"><link rel="preload" href="/assets/js/app.5ab4d23c.js" as="script"><link rel="preload" href="/assets/js/6.35f30039.js" as="script"><link rel="preload" href="/assets/js/20.9d20ed18.js" as="script"><link rel="prefetch" href="/assets/js/1.5cc123c1.js"><link rel="prefetch" href="/assets/js/10.926e81f3.js"><link rel="prefetch" href="/assets/js/11.97f13b1a.js"><link rel="prefetch" href="/assets/js/12.5d117340.js"><link rel="prefetch" href="/assets/js/13.3ecd2616.js"><link rel="prefetch" href="/assets/js/14.53fc963d.js"><link rel="prefetch" href="/assets/js/15.754b7a67.js"><link rel="prefetch" href="/assets/js/16.c6d5cd73.js"><link rel="prefetch" href="/assets/js/17.4ea439f8.js"><link rel="prefetch" href="/assets/js/18.7d88d3cb.js"><link rel="prefetch" href="/assets/js/19.774c19d8.js"><link rel="prefetch" href="/assets/js/21.ab06b816.js"><link rel="prefetch" href="/assets/js/22.6c562384.js"><link rel="prefetch" href="/assets/js/23.19608dac.js"><link rel="prefetch" href="/assets/js/24.3d32a73c.js"><link rel="prefetch" href="/assets/js/25.0170e015.js"><link rel="prefetch" href="/assets/js/3.80214660.js"><link rel="prefetch" href="/assets/js/4.e6411a27.js"><link rel="prefetch" href="/assets/js/5.266b978f.js"><link rel="prefetch" href="/assets/js/7.1aa5a4ce.js"><link rel="prefetch" href="/assets/js/8.658cca8b.js"><link rel="prefetch" href="/assets/js/9.57a66d49.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a46dcfd8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-meteorlxy"><header class="header" data-v-0539f1bd><div data-v-39c72c19 data-v-0539f1bd><nav class="navbar" data-v-39c72c19><div class="container" data-v-39c72c19><a href="/" class="router-link-active" data-v-39c72c19><span class="navbar-site-name" data-v-39c72c19>
+          JunzhouLiu
+        </span></a> <div class="navbar-toggler" data-v-39c72c19><svg class="icon" style="font-size:1.2em;" data-v-39c72c19 data-v-39c72c19><title data-v-39c72c19 data-v-39c72c19>menu</title><use xlink:href="#icon-menu" data-v-39c72c19 data-v-39c72c19></use></svg></div> <div class="navbar-links" data-v-39c72c19><a href="/" class="navbar-link" data-v-39c72c19>
+            首页
+          </a><a href="/posts/" class="navbar-link" data-v-39c72c19>
+            文章
+          </a><a href="/about/" class="navbar-link" data-v-39c72c19>
+            关于
+          </a></div></div></nav> <div class="navbar-holder" style="display:none;" data-v-39c72c19></div></div> <div class="banner" data-v-98d6aa8c data-v-0539f1bd data-v-0539f1bd><div class="container" data-v-98d6aa8c><div class="center" data-v-98d6aa8c><h1 data-v-98d6aa8c data-v-0539f1bd>
+          栈 (Stack) 的使用
+        </h1></div></div></div></header> <div class="container clearfix show-aside" data-v-6cd81e6a data-v-6cd81e6a><main class="main" data-v-6cd81e6a><div class="post" data-v-6cd81e6a data-v-6cd81e6a><section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2019-01-16
+    </span> <span class="update-date" data-v-4e23451f>
+      最后修改 : 2019-06-17
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/page-background/" class="post-link" data-v-4e23451f>
+      上一篇 : Hexo-NexT主题修改页面透明度及页面颜色
+    </a> <a href="/2018end/" class="post-link" data-v-4e23451f>
+      下一篇 : 2018年就这样结束了
+    </a></section></section> <article class="main-div"><div class="post-content content content__default"><p>本文用 “括号匹配问题” 来了解栈 (Stack) 的使用，不涉及栈的具体实现。（如果没有特殊的标注，本文代码语法基本符合C++11标准）</p> <h3 id="题目描述"><a href="#题目描述" aria-hidden="true" class="header-anchor">#</a> 题目描述:</h3> <p>现在，有一行括号序列，请你检查这行括号是否配对。</p> <h3 id="输入描述"><a href="#输入描述" aria-hidden="true" class="header-anchor">#</a> 输入描述:</h3> <p>第一行输入一个数N（0&lt;N&lt;=100）,表示有N组测试数据。后面的N行输入多组输入数据，每组输入数据都是一个字符串S(S的长度小于10000，且S不是空串），测试数据组数少于5组。数据保证S中只含有&quot;[&quot;, &quot;]&quot;, &quot;(&quot;, &quot;)&quot; 四种字符</p> <h3 id="输出描述"><a href="#输出描述" aria-hidden="true" class="header-anchor">#</a> 输出描述:</h3> <p>每组输入数据的输出占一行，如果该字符串中所含的括号是配对的，则输出Yes,如果不配对则输出No</p> <h3 id="样例输入"><a href="#样例输入" aria-hidden="true" class="header-anchor">#</a> 样例输入:</h3> <div class="language- extra-class"><pre class="language-text"><code>3
+[(])
+(])
+([[]()])
+</code></pre></div><h3 id="样例输出"><a href="#样例输出" aria-hidden="true" class="header-anchor">#</a> 样例输出:</h3> <div class="language- extra-class"><pre class="language-text"><code>No
+No
+Yes
+</code></pre></div><h3 id="题目地址-nyoj002"><a href="#题目地址-nyoj002" aria-hidden="true" class="header-anchor">#</a> 题目地址 - <a href="http://nyoj.top/problem/2" target="_blank" rel="noopener noreferrer">NYOJ002<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></h3> <h3 id="题目分析"><a href="#题目分析" aria-hidden="true" class="header-anchor">#</a> 题目分析</h3> <p>通过观察 <code>([[]()])</code> 这组数据我们不难发现，如果这个长序列的括号数量是奇数，那么他一定是失配的。</p> <p>如果当前的括号序列是匹配的，那么相应的一种类型的左括号是必须对应一个该类型的右括号，并且他们的位置也应该是左括号在左，右括号在右，<code>)(</code> 这种是不行的。现在问题就变成了 我如何从这样的一个括号序列中逐个把每组匹配的括号找出来呢。</p> <p>使用栈这种数据结构来解决。</p> <blockquote><p>栈时一种特殊的线性表，并且只能在线性表的一端进行操作，我们称之为栈顶（top），无法对栈底元素进行操作。栈具有LIFO(last-in first-out)的特性。</p></blockquote> <p>我们可以这样来操作，如果当前字符是左括号，那么我们就对他进行入栈操作，是右括号，那我们就拿他和栈顶元素进行比较，同一类型则弹出栈顶元素，继续判断下一个括号。不是同一类型，则失配。退出匹配。</p> <p>如果该组数据的括号全部是匹配的，那么匹配结束后栈应该是空的。但是，考虑到特殊情况（匹配过程中没有元素入栈），我们还需要一个flag标志来保证匹配过程中是否失配。</p> <p>下面是具体的代码实现，做题的时候现写的代码，也没有整理过，所以代码逻辑可能会有些混乱。emmmm，不排除还会有些冗余的条件判断。仅作参考，有虫子及时拍砖我。</p> <h3 id="代码实现"><a href="#代码实现" aria-hidden="true" class="header-anchor">#</a> 代码实现</h3> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> argv<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+    cin<span class="token operator">&gt;&gt;</span>n<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>n<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        string s<span class="token punctuation">;</span>
+        cin<span class="token operator">&gt;&gt;</span>s<span class="token punctuation">;</span>
+        <span class="token keyword">bool</span> flag<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+        stack<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">&gt;</span>str<span class="token punctuation">;</span> <span class="token comment">//创建一个char类型的栈</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">//判断长度是否为奇数</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'('</span><span class="token operator">||</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'['</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                str<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                 <span class="token comment">//遇到左括号入栈，继续判断下一个</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">')'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">//空栈遇到右括号匹配结束</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">char</span> p<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">==</span><span class="token string">'('</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//遇到右括号栈顶为左括号</span>
+                    str<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//栈顶出栈</span>
+                    <span class="token keyword">continue</span><span class="token punctuation">;</span> 
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">']'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//第二种括号类型判断</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">char</span> p<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">==</span><span class="token string">'['</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    str<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token operator">&amp;&amp;</span>str<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cout<span class="token operator">&lt;&lt;</span><span class="token string">&quot;Yes&quot;</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            cout<span class="token operator">&lt;&lt;</span><span class="token string">&quot;No&quot;</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></article> <section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2019-01-16
+    </span> <span class="update-date" data-v-4e23451f>
+      最后修改 : 2019-06-17
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/page-background/" class="post-link" data-v-4e23451f>
+      上一篇 : Hexo-NexT主题修改页面透明度及页面颜色
+    </a> <a href="/2018end/" class="post-link" data-v-4e23451f>
+      下一篇 : 2018年就这样结束了
+    </a></section></section> <div id="post-comments" class="main-div"><!----></div></div></main> <aside class="aside" data-v-6cd81e6a><div class="info-card main-div" data-v-3da8ff8d data-v-6cd81e6a><div class="info-card-header" data-v-3da8ff8d><img src="/assets/img/avatar.jpg" alt="Junzhou" class="info-avatar" data-v-3da8ff8d></div> <div class="info-card-body" data-v-3da8ff8d><section class="info-nickname" data-v-3da8ff8d>
+      Junzhou
+    </section> <section class="info-desc" data-v-3da8ff8d>Happy Coding<br/>Happy Life</section> <section class="info-contact" data-v-3da8ff8d><section data-v-3da8ff8d><span title="XinYang City, China" data-v-3da8ff8d data-v-3da8ff8d><svg class="icon" style="font-size:1em;" data-v-3da8ff8d data-v-3da8ff8d><title data-v-3da8ff8d data-v-3da8ff8d>XinYang City, China</title><use xlink:href="#icon-location" data-v-3da8ff8d data-v-3da8ff8d></use></svg><span class="info-text" data-v-3da8ff8d data-v-3da8ff8d>
+          XinYang City, China
+        </span></span></section> <!----> <section data-v-3da8ff8d><a href="mailto:Junzhou2016@outlook.com" title="Junzhou2016@outlook.com" data-v-3da8ff8d data-v-3da8ff8d><svg class="icon" style="font-size:1em;" data-v-3da8ff8d data-v-3da8ff8d><title data-v-3da8ff8d data-v-3da8ff8d>Junzhou2016@outlook.com</title><use xlink:href="#icon-email" data-v-3da8ff8d data-v-3da8ff8d></use></svg><span class="info-text" data-v-3da8ff8d data-v-3da8ff8d>
+          Junzhou2016@outlook.com
+        </span></a></section></section></div> <div class="info-card-footer" data-v-3da8ff8d><section class="info-sns clearfix" data-v-3da8ff8d><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-3da8ff8d><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-3da8ff8d data-v-3da8ff8d><svg class="icon" style="font-size:1.5em;" data-v-3da8ff8d data-v-3da8ff8d><title data-v-3da8ff8d data-v-3da8ff8d>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-3da8ff8d data-v-3da8ff8d></use></svg></span></a></section></div></div> <div class="post-nav-card main-div" style="position:relative;top:0;width:0px;" data-v-6cd81e6a><!----> <div class="post-nav-comments"><svg class="icon"><title>comment</title><use xlink:href="#icon-comment"></use></svg> <a href="/stack/#post-comments">
+      评论
+    </a></div></div></aside></div> <footer class="footer" data-v-1114308c><p class="sns-links" data-v-1114308c><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-1114308c><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-1114308c data-v-1114308c><svg class="icon" style="font-size:25px;" data-v-1114308c data-v-1114308c><title data-v-1114308c data-v-1114308c>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-1114308c data-v-1114308c></use></svg></span></a></p> <p data-v-1114308c><span data-v-1114308c>Powered by </span> <a href="https://vuepress.vuejs.org" target="_blank" data-v-1114308c>
+      Vuepress
+    </a></p></footer></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.5ab4d23c.js" defer></script><script src="/assets/js/6.35f30039.js" defer></script><script src="/assets/js/20.9d20ed18.js" defer></script>
+  </body>
+</html>

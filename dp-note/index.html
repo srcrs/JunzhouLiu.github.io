@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>dynamic-programming note (动态规划专题) | JunzhouLiu</title>
+    <meta name="description" content="Happy Coding">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.a46dcfd8.css" as="style"><link rel="preload" href="/assets/js/app.5ab4d23c.js" as="script"><link rel="preload" href="/assets/js/6.35f30039.js" as="script"><link rel="preload" href="/assets/js/18.7d88d3cb.js" as="script"><link rel="prefetch" href="/assets/js/1.5cc123c1.js"><link rel="prefetch" href="/assets/js/10.926e81f3.js"><link rel="prefetch" href="/assets/js/11.97f13b1a.js"><link rel="prefetch" href="/assets/js/12.5d117340.js"><link rel="prefetch" href="/assets/js/13.3ecd2616.js"><link rel="prefetch" href="/assets/js/14.53fc963d.js"><link rel="prefetch" href="/assets/js/15.754b7a67.js"><link rel="prefetch" href="/assets/js/16.c6d5cd73.js"><link rel="prefetch" href="/assets/js/17.4ea439f8.js"><link rel="prefetch" href="/assets/js/19.774c19d8.js"><link rel="prefetch" href="/assets/js/20.9d20ed18.js"><link rel="prefetch" href="/assets/js/21.ab06b816.js"><link rel="prefetch" href="/assets/js/22.6c562384.js"><link rel="prefetch" href="/assets/js/23.19608dac.js"><link rel="prefetch" href="/assets/js/24.3d32a73c.js"><link rel="prefetch" href="/assets/js/25.0170e015.js"><link rel="prefetch" href="/assets/js/3.80214660.js"><link rel="prefetch" href="/assets/js/4.e6411a27.js"><link rel="prefetch" href="/assets/js/5.266b978f.js"><link rel="prefetch" href="/assets/js/7.1aa5a4ce.js"><link rel="prefetch" href="/assets/js/8.658cca8b.js"><link rel="prefetch" href="/assets/js/9.57a66d49.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a46dcfd8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-meteorlxy"><header class="header" data-v-0539f1bd><div data-v-39c72c19 data-v-0539f1bd><nav class="navbar" data-v-39c72c19><div class="container" data-v-39c72c19><a href="/" class="router-link-active" data-v-39c72c19><span class="navbar-site-name" data-v-39c72c19>
+          JunzhouLiu
+        </span></a> <div class="navbar-toggler" data-v-39c72c19><svg class="icon" style="font-size:1.2em;" data-v-39c72c19 data-v-39c72c19><title data-v-39c72c19 data-v-39c72c19>menu</title><use xlink:href="#icon-menu" data-v-39c72c19 data-v-39c72c19></use></svg></div> <div class="navbar-links" data-v-39c72c19><a href="/" class="navbar-link" data-v-39c72c19>
+            首页
+          </a><a href="/posts/" class="navbar-link" data-v-39c72c19>
+            文章
+          </a><a href="/about/" class="navbar-link" data-v-39c72c19>
+            关于
+          </a></div></div></nav> <div class="navbar-holder" style="display:none;" data-v-39c72c19></div></div> <div class="banner" data-v-98d6aa8c data-v-0539f1bd data-v-0539f1bd><div class="container" data-v-98d6aa8c><div class="center" data-v-98d6aa8c><h1 data-v-98d6aa8c data-v-0539f1bd>
+          dynamic-programming note (动态规划专题)
+        </h1></div></div></div></header> <div class="container clearfix show-aside" data-v-6cd81e6a data-v-6cd81e6a><main class="main" data-v-6cd81e6a><div class="post" data-v-6cd81e6a data-v-6cd81e6a><section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2019-03-22
+    </span> <span class="update-date" data-v-4e23451f>
+      最后修改 : 2019-06-17
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/week2/" class="post-link" data-v-4e23451f>
+      上一篇 : 赛前第二周 真题训练
+    </a> <a href="/posts/2019/06/05/_19-06-05-myderam.html" class="post-link" data-v-4e23451f>
+      下一篇 : 路漫漫其修远兮
+    </a></section></section> <article class="main-div"><div class="post-content content content__default"><p>昨天在看DP算法，特意开篇文章记录下，加深一下印象。本文围绕著名的01背包展开讨论。
+</p> <h2 id="开始dp之前"><a href="#开始dp之前" aria-hidden="true" class="header-anchor">#</a> 开始DP之前</h2> <p>提起DP，就给我一种难到天迹的感觉，实际上DP要是难起来也确实没边，通过学习DP算法也发现自己在逻辑推理以及阅读包含大量公式文章上的效率不足。</p> <p>在讲我对DP的理解之前，我想回顾下斐波那契数列（<code>Fibonacci sequence</code>），想必大家对这个并不陌生，就像下面这样。</p> <p>$${1,1,2,3,5,8,13,21····}$$</p> <p>我们已经知道斐波那契的计算公式为</p> <p>$$fib(n) =\left.
+\begin{cases}
+1  &amp; n=1,2\
+fib(n-1)+fib(n-2) &amp; n&gt;2\
+\end{cases}
+\right.
+$$</p> <p>如果我们使用递归求<code>fib(5)</code>，展开是这个样子的。</p> <p><img src="https://i.loli.net/2019/03/22/5c947534c34d3.png" alt=""></p> <p>从中不难看出我们在使用递归算法自顶向下求$fib(5)$的时候，求了两次$fib(3)$,三次$fib(2)$，如果<code>n</code>值越大，其中的重复求解就会越多，并且这类求解都是已经求过的，不是新产生的问题（求$fib(7)$的时候不会出现求解$fib(10)$的情况），这类重复的求解的问题，我们称之具有<code>重叠子问题</code>性质</p> <p>在递归求解中，我们实际上只需要递归到子问题$fib(1)=1,fib(2)=1$即可求解问题,因为$fib(1),fib(2)$值是确定的，所以我们可以理解为只要$fib(1),fib(2)$的值一旦确定，后续的$fib(3),fib(4)···fib(N)$的值也是确定的，我们称之为<code>无后效性</code>，即该阶段状态已知，则后续发展阶段的状态仅跟前一阶段状态有关，而和其他阶段状态无关。</p> <p>简单讲，动态规划算法适用具有以下性质的问题</p> <blockquote><p>重叠子问题：子问题重叠性质是指在用递归算法自顶向下对问题进行求解时，每次产生的子问题并不总是新问题，有些子问题会被重复计算多次。wiki</p></blockquote> <blockquote><p>无后效性：无后效性是指如果在某个阶段上过程的状态已知，则从此阶段下一过程的发展变化仅与此阶段的状态有关，而与过程在此阶段以前的阶段所经历过的状态无关。</p></blockquote> <blockquote><p>最优子结构性质。如果问题的最优解所包含的子问题的解也是最优的，我们就称该问题具有最优子结构性质（即满足最优化原理）。wiki</p></blockquote> <h2 id="关于0-1-knapsack-problem-的思考过程"><a href="#关于0-1-knapsack-problem-的思考过程" aria-hidden="true" class="header-anchor">#</a> 关于0/1 Knapsack Problem 的思考过程</h2> <h3 id="问题描述"><a href="#问题描述" aria-hidden="true" class="header-anchor">#</a> 问题描述</h3> <p>给定$N$个物品,每个物品有一个重量$W$和一个价值$V$.你有一个能装M重量的背包.问怎么装使得所装价值最大.每个物品只有一个.</p> <h3 id="输入格式"><a href="#输入格式" aria-hidden="true" class="header-anchor">#</a> 输入格式</h3> <p>输入的第一行包含两个整数$n$, $m$，分别表示物品的个数和背包能装重量。
+以后$N$行每行两个数$Wi$和$Vi$,表示物品的重量和价值</p> <h3 id="输出格式"><a href="#输出格式" aria-hidden="true" class="header-anchor">#</a> 输出格式</h3> <p>输出1行，包含一个整数，表示最大价值。</p> <h3 id="样例输入"><a href="#样例输入" aria-hidden="true" class="header-anchor">#</a> 样例输入</h3> <div class="language-YAML extra-class"><pre class="language-yaml"><code>3 5
+2 3
+3 5
+4 7
+</code></pre></div><h3 id="样例输出"><a href="#样例输出" aria-hidden="true" class="header-anchor">#</a> 样例输出</h3> <div class="language-yaml extra-class"><pre class="language-yaml"><code>8
+</code></pre></div><h3 id="数据规模和约定"><a href="#数据规模和约定" aria-hidden="true" class="header-anchor">#</a> 数据规模和约定</h3> <p>$1&lt;=N&lt;=200,M&lt;=5000.$</p> <p>来自 <a href="http://lx.lanqiao.cn/problem.page?gpid=T287" target="_blank" rel="noopener noreferrer">http://lx.lanqiao.cn/problem.page?gpid=T287<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h2 id="首先是状态转移方程"><a href="#首先是状态转移方程" aria-hidden="true" class="header-anchor">#</a> 首先是状态转移方程</h2> <p>我们特别约定</p> <table><thead><tr><th style="text-align:center;">符号</th> <th style="text-align:center;">含义</th></tr></thead> <tbody><tr><td style="text-align:center;">$N$</td> <td style="text-align:center;">物品的件数</td></tr> <tr><td style="text-align:center;">$Ni$</td> <td style="text-align:center;">第 $i$ 件物品</td></tr> <tr><td style="text-align:center;">$V$</td> <td style="text-align:center;">背包的总容量</td></tr> <tr><td style="text-align:center;">$v$</td> <td style="text-align:center;">当前背包的容量</td></tr> <tr><td style="text-align:center;">$Ci$</td> <td style="text-align:center;">第 $i$ 个物品消耗的容量</td></tr> <tr><td style="text-align:center;">$Wi$</td> <td style="text-align:center;">第 $i$ 个物品获取的价值</td></tr></tbody></table> <p>假设我是一个背着容量为20麻袋的小偷，来到了仓库中，那么我遇到了以下选择。</p> <p>$$ Choice =\left.
+\begin{cases}
+Ci&gt;v   &amp; 不偷 \
+Ci&lt;v   &amp; 偷或者不偷 \
+\end{cases}
+\right.
+$$</p> <p>假设当前的背包容量$v&gt;Ci$，那么我们就需要考虑偷和不偷两种情况。偷和不偷的状态转移方程则就是</p> <p>$$ Max =\left.
+\begin{cases}
+F[i,v]=F[i-1,v]&amp;不偷\
+F[i,v]=F[i-1,v-Ci]+Wi&amp;偷\
+\end{cases}
+\right.
+$$</p> <p>在这里$F(i,v)$，<em>我们表示前i件物品刚好放入空间为$v$的背包中产生的总价值，F(3,10)就代表我前三件物品，占用10空间屎产生的价值</em>，所以不偷的状态转移方程就很好理解了，如果第$i$件物品我选择不拿，那么$F(i,v)$的价值和背包剩余空间没有发生改变，和$F[i-1,v]$一致，也就是拿$i-1$件物品状态。我们只要沿用$F[i-1,v]$状态就可以了。</p> <p>$$F[i,v]=F[i-1,v]$$</p> <p>但是如果我拿了呢，那么状态方程中的价值和空间就应该更新。他的总价值基于什么发生改变呢？很明显，我在拿了前$i-1$件物品的基础上，我的价值增加了$Wi$也就是$F[i-1,v]+Wi$,那么此时我的空间发生了什么变化，当然是减去第$i$件商品的重量$Ci$啦，那么我的状态就是$F[i-1,v-Ci]+Wi$的状态,此时我们更新该状态。</p> <p>$$F[i,v]=F[i-1,v-Ci]+Wi$$</p> <p>现在回过头来，其实装不下的时候，我们也可以归类为不偷这一状态。那么到这里，状态转移方程我们已经搞清楚了。</p> <p>$$ Max =\left.
+\begin{cases}
+F[i,v]=F[i-1,v]&amp;装不下，不偷\
+F[i,v]=F[i-1,v]&amp;装的下，不偷\
+F[i,v]=F[i-1,v-Ci]+Wi&amp;装的下，偷\
+\end{cases}
+\right.
+$$</p> <p><strong>那么我们的决策策略，也就出来了，装不下的之后不偷，装的下的时候我们选偷和不偷两种策略中的最佳策略，这样我们就能保证我们的决策是当前最优，即局部最优，从而得到全局最优解或者说近似最优解。</strong></p> <h2 id="算法设计和实现"><a href="#算法设计和实现" aria-hidden="true" class="header-anchor">#</a> 算法设计和实现</h2> <h3 id="空间复杂度-o-nv"><a href="#空间复杂度-o-nv" aria-hidden="true" class="header-anchor">#</a> 空间复杂度$O(NV)$</h3> <p>由于动态规划的过程中我们需要访问之前的状态，所以我们需要设计个东西存放状态，这里我们采用二维数组的方式。
+即$F[N][V]$，也就是$N*V$大小的数组，为了算法实现（物品从1编号）比较方便，我们实际上采用$F[N+1][V+1]$大小的空间，最后$F[N][V]$中存放的就是我们的目标结果。</p> <p>通过双层<code>for</code>进行遍历，伪代码示意如下</p> <div class="language-c++ extra-class"><pre class="language-text"><code>F[N+1][V+1]={0};初始化数组都为0
+for i←1 to N //从1号物品到N号物品
+    for v←Ci to V //背包空间从1-V
+        if(Ci&gt;v) //第i个物品的重量大于当前背包容量
+            F[i,v]=F[i-1,v]; //装不下，不拿
+        else //可以拿的时候,取拿或者不拿的最优解。
+            F[i,v]=max(F[i-1,v],F[i-1,v-Ci]+Wi);
+</code></pre></div><p>实际的遍历过程示意 <em>i从小到大，v从小到大</em></p> <table><thead><tr><th style="text-align:center;"></th> <th style="text-align:center;"></th> <th style="text-align:center;">$v→V$</th> <th style="text-align:center;">0</th> <th style="text-align:center;">1</th> <th style="text-align:center;">2</th> <th style="text-align:center;">3</th> <th style="text-align:center;">4</th> <th style="text-align:center;">5</th> <th style="text-align:center;">6</th> <th style="text-align:center;">7</th> <th style="text-align:center;">8</th> <th style="text-align:center;">9</th> <th style="text-align:center;">10</th> <th style="text-align:center;">11</th> <th style="text-align:center;">12</th> <th style="text-align:center;">13</th> <th style="text-align:center;">14</th> <th style="text-align:center;">15</th> <th style="text-align:center;">16</th> <th style="text-align:center;">17</th> <th style="text-align:center;">18</th> <th style="text-align:center;">19</th> <th style="text-align:center;">20</th></tr></thead> <tbody><tr><td style="text-align:center;">$Ni$</td> <td style="text-align:center;">$Ci$</td> <td style="text-align:center;">$Wi$</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td></tr> <tr><td style="text-align:center;">1</td> <td style="text-align:center;">2</td> <td style="text-align:center;">5</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td> <td style="text-align:center;">5</td></tr> <tr><td style="text-align:center;">2</td> <td style="text-align:center;">3</td> <td style="text-align:center;">7</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">5</td> <td style="text-align:center;">7</td> <td style="text-align:center;">7</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td></tr> <tr><td style="text-align:center;">3</td> <td style="text-align:center;">6</td> <td style="text-align:center;">4</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">5</td> <td style="text-align:center;">7</td> <td style="text-align:center;">7</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">12</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td> <td style="text-align:center;">16</td></tr> <tr><td style="text-align:center;">4</td> <td style="text-align:center;">3</td> <td style="text-align:center;">8</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">5</td> <td style="text-align:center;">8</td> <td style="text-align:center;">8</td> <td style="text-align:center;">13</td> <td style="text-align:center;">15</td> <td style="text-align:center;">15</td> <td style="text-align:center;">20</td> <td style="text-align:center;">20</td> <td style="text-align:center;">20</td> <td style="text-align:center;">20</td> <td style="text-align:center;">20</td> <td style="text-align:center;">20</td> <td style="text-align:center;">24</td> <td style="text-align:center;">24</td> <td style="text-align:center;">24</td> <td style="text-align:center;">24</td> <td style="text-align:center;">24</td> <td style="text-align:center;">24</td> <td style="text-align:center;">24</td></tr> <tr><td style="text-align:center;">5</td> <td style="text-align:center;">4</td> <td style="text-align:center;">5</td> <td style="text-align:center;">0</td> <td style="text-align:center;">0</td> <td style="text-align:center;">5</td> <td style="text-align:center;">8</td> <td style="text-align:center;">8</td> <td style="text-align:center;">13</td> <td style="text-align:center;">15</td> <td style="text-align:center;">15</td> <td style="text-align:center;">20</td> <td style="text-align:center;">20</td> <td style="text-align:center;">20</td> <td style="text-align:center;">20</td> <td style="text-align:center;">25</td> <td style="text-align:center;">25</td> <td style="text-align:center;">25</td> <td style="text-align:center;">25</td> <td style="text-align:center;">25</td> <td style="text-align:center;">25</td> <td style="text-align:center;">29</td> <td style="text-align:center;">29</td> <td style="text-align:center;">29</td></tr></tbody></table> <h3 id="空间复杂度-o-v"><a href="#空间复杂度-o-v" aria-hidden="true" class="header-anchor">#</a> 空间复杂度$O(V)$</h3> <p>我们前面提到动态规划算法适用问题中有个特性叫做无后效性，也就是i阶段仅和前一阶段 $i-1$ 的状态有关，放到本问题中就是，我的求解数组，仅仅和前一组数据有关。
+回顾前面的算法我们知道，第 $i$ 件物品无论放还是不放的状态转移方程仅和前 $i-1$ 件物品的状态有关，并且<em>前$i-1$件</em>物品总价值存放在第$F[i-1,v]$中。$v$ 则不断递增。</p> <p>如果我们使用一个一维数组$dp[V+1]$来存放状态，那么我我们就要保证我们能正常访问$F[i-1,v]$和$F[i-1,v-Ci]$,实际上是完全可以的，我们需要略微改动一下状态转移方程。</p> <p>$$Max=\left.
+\begin{cases}
+dp[v]=dp[v]&amp;装不下，不偷\<br>
+dp[v]=dp[v]&amp;装的下，不偷\
+dp[v]=dp[v-Ci]+Wi&amp;装的下，偷\
+\end{cases}
+\right.
+$$</p> <p>看到这里，我们再思考一个问题，如果$Ci&gt;v$怎么办？这样数组就越界了。所以我们需要保证$v&gt;Ci$,并且内层for循环需要逆序访问即$V→v$,不然$F[i,v]$值实际上是就变成了$F[i,v-Ci]$而来。这里你追踪下值的变化即可发现。</p> <p><strong>说白了就是我$v$从小到大开始求的时候，小容量的值更新后就是第$i$轮的了，如果后面需要用 $i-1$ 轮的，就没法用了。</strong></p> <p><strong>注意</strong> dp数组需要进行初始化操作，最开始背包中并没有物品，所以价值为0。在具体的算法设计中可以预先初始化dp数组，并从物品1开始。</p> <p>伪代码示意如下</p> <div class="language-c++ extra-class"><pre class="language-text"><code>dp[V+1]={0}; //初始化数组都为0
+for i←1 to N //从1号物品到N号物品
+    for v←V to Ci &amp;&amp; v&gt;=Ci //背包空间从V到1,v大于等于Ci，反之不可拿，
+    //这里优化掉了，因为不拿的时候值不用更新，所以只考虑拿的时候值才会更新
+        dp[v]=max(dp[v],dp[v-C[i]]+W[i]); //可以拿时取最优
+</code></pre></div><h2 id="实现代码"><a href="#实现代码" aria-hidden="true" class="header-anchor">#</a> 实现代码</h2> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#define MAXN 201
+#define MAXM 5001
+using namespace std;
+
+int F[MAXN][MAXM]= {{0}};
+
+int main () {
+	int N,V;
+	cin&gt;&gt;N&gt;&gt;V;
+	int dp[V+1]= {0};
+	int C[N+1]= {0},W[V+1]= {0};//花费C（单个物体的重量），获得价值W
+//数据读入
+	for(int i=1; i&lt;=N; i++) {
+		cin&gt;&gt;C[i]&gt;&gt;W[i];
+	}
+
+//空间复杂度O(NV)
+	int i,v;//第i件物品，当前背包容量v
+	for(i=1; i&lt;=N; i++) {//第1到第N件物品
+		for(v=C[i]; v&lt;=V; v++) {//背包空间C[i]到V;
+			if(C[i]&gt;v) {//能不能放下
+				F[i][v]=F[i-1][v];//不放
+			} else {
+				F[i][v]=max(F[i-1][v],F[i-1][v-C[i]]+W[i]);//取放和不放的最优解
+			}
+		}
+	}
+	std::cout&lt;&lt;F[N][V]&lt;&lt;endl;
+//空间复杂度O(V)
+	for(i=1; i&lt;=N; i++) {
+		for(v=V; v&gt;=C[i]; v--) {
+			dp[v]=max(dp[v],dp[v-C[i]]+W[i]);
+		}
+	}
+	std::cout&lt;&lt;dp[V]&lt;&lt;endl;
+//输出二维数组F
+	cout&lt;&lt;&quot;O(NV)&quot;&lt;&lt;endl;
+
+	for(int i=1; i&lt;=N; i++) {
+		for(int j=1; j&lt;=V; j++) {
+			cout&lt;&lt;F[i][j]&lt;&lt;&quot; &quot;;
+		}
+		cout&lt;&lt;endl;
+	}
+//输出一维数组dp
+	cout&lt;&lt;&quot;O(N)&quot;&lt;&lt;endl;
+	for(int i=1; i&lt;=V; i++) {
+		cout&lt;&lt;dp[i]&lt;&lt;&quot; &quot;;
+	}
+	cout&lt;&lt;endl;
+	return 0;
+}
+</code></pre></div></div></article> <section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2019-03-22
+    </span> <span class="update-date" data-v-4e23451f>
+      最后修改 : 2019-06-17
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/week2/" class="post-link" data-v-4e23451f>
+      上一篇 : 赛前第二周 真题训练
+    </a> <a href="/posts/2019/06/05/_19-06-05-myderam.html" class="post-link" data-v-4e23451f>
+      下一篇 : 路漫漫其修远兮
+    </a></section></section> <div id="post-comments" class="main-div"><!----></div></div></main> <aside class="aside" data-v-6cd81e6a><div class="info-card main-div" data-v-3da8ff8d data-v-6cd81e6a><div class="info-card-header" data-v-3da8ff8d><img src="/assets/img/avatar.jpg" alt="Junzhou" class="info-avatar" data-v-3da8ff8d></div> <div class="info-card-body" data-v-3da8ff8d><section class="info-nickname" data-v-3da8ff8d>
+      Junzhou
+    </section> <section class="info-desc" data-v-3da8ff8d>Happy Coding<br/>Happy Life</section> <section class="info-contact" data-v-3da8ff8d><section data-v-3da8ff8d><span title="XinYang City, China" data-v-3da8ff8d data-v-3da8ff8d><svg class="icon" style="font-size:1em;" data-v-3da8ff8d data-v-3da8ff8d><title data-v-3da8ff8d data-v-3da8ff8d>XinYang City, China</title><use xlink:href="#icon-location" data-v-3da8ff8d data-v-3da8ff8d></use></svg><span class="info-text" data-v-3da8ff8d data-v-3da8ff8d>
+          XinYang City, China
+        </span></span></section> <!----> <section data-v-3da8ff8d><a href="mailto:Junzhou2016@outlook.com" title="Junzhou2016@outlook.com" data-v-3da8ff8d data-v-3da8ff8d><svg class="icon" style="font-size:1em;" data-v-3da8ff8d data-v-3da8ff8d><title data-v-3da8ff8d data-v-3da8ff8d>Junzhou2016@outlook.com</title><use xlink:href="#icon-email" data-v-3da8ff8d data-v-3da8ff8d></use></svg><span class="info-text" data-v-3da8ff8d data-v-3da8ff8d>
+          Junzhou2016@outlook.com
+        </span></a></section></section></div> <div class="info-card-footer" data-v-3da8ff8d><section class="info-sns clearfix" data-v-3da8ff8d><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-3da8ff8d><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-3da8ff8d data-v-3da8ff8d><svg class="icon" style="font-size:1.5em;" data-v-3da8ff8d data-v-3da8ff8d><title data-v-3da8ff8d data-v-3da8ff8d>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-3da8ff8d data-v-3da8ff8d></use></svg></span></a></section></div></div> <div class="post-nav-card main-div" style="position:relative;top:0;width:0px;" data-v-6cd81e6a><div class="post-nav-contents"><svg class="icon"><title>book</title><use xlink:href="#icon-book"></use></svg> <span>文章目录</span> <div class="post-nav-toc"><ul><li><a href="/dp-note/#开始dp之前">开始DP之前</a></li><li><a href="/dp-note/#关于0-1-knapsack-problem-的思考过程">关于0/1 Knapsack Problem 的思考过程</a><ul><li><a href="/dp-note/#问题描述">问题描述</a></li><li><a href="/dp-note/#输入格式">输入格式</a></li><li><a href="/dp-note/#输出格式">输出格式</a></li><li><a href="/dp-note/#样例输入">样例输入</a></li><li><a href="/dp-note/#样例输出">样例输出</a></li><li><a href="/dp-note/#数据规模和约定">数据规模和约定</a></li></ul></li><li><a href="/dp-note/#首先是状态转移方程">首先是状态转移方程</a></li><li><a href="/dp-note/#算法设计和实现">算法设计和实现</a><ul><li><a href="/dp-note/#空间复杂度-o-nv">空间复杂度$O(NV)$</a></li><li><a href="/dp-note/#空间复杂度-o-v">空间复杂度$O(V)$</a></li></ul></li><li><a href="/dp-note/#实现代码">实现代码</a></li></ul></div></div> <div class="post-nav-comments"><svg class="icon"><title>comment</title><use xlink:href="#icon-comment"></use></svg> <a href="/dp-note/#post-comments">
+      评论
+    </a></div></div></aside></div> <footer class="footer" data-v-1114308c><p class="sns-links" data-v-1114308c><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-1114308c><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-1114308c data-v-1114308c><svg class="icon" style="font-size:25px;" data-v-1114308c data-v-1114308c><title data-v-1114308c data-v-1114308c>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-1114308c data-v-1114308c></use></svg></span></a></p> <p data-v-1114308c><span data-v-1114308c>Powered by </span> <a href="https://vuepress.vuejs.org" target="_blank" data-v-1114308c>
+      Vuepress
+    </a></p></footer></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.5ab4d23c.js" defer></script><script src="/assets/js/6.35f30039.js" defer></script><script src="/assets/js/18.7d88d3cb.js" defer></script>
+  </body>
+</html>
