@@ -6,7 +6,7 @@
     <title>Hexo-NexT主题修改页面透明度及页面颜色 | JunzhouLiu</title>
     <meta name="description" content="Happy Coding">
     <meta name="generator" content="VuePress 1.3.1">
-    <link rel="preload" href="/assets/css/0.styles.bfa9bcb2.css" as="style"><link rel="preload" href="/assets/js/app.81496316.js" as="script"><link rel="preload" href="/assets/js/7.19dbbf5a.js" as="script"><link rel="preload" href="/assets/js/18.9d57c44a.js" as="script"><link rel="prefetch" href="/assets/js/1.4c673430.js"><link rel="prefetch" href="/assets/js/10.08b422bb.js"><link rel="prefetch" href="/assets/js/11.69e66e60.js"><link rel="prefetch" href="/assets/js/12.3f4f4a1c.js"><link rel="prefetch" href="/assets/js/13.1333b1e2.js"><link rel="prefetch" href="/assets/js/14.3223853b.js"><link rel="prefetch" href="/assets/js/15.2dc5954e.js"><link rel="prefetch" href="/assets/js/16.bb54fcb5.js"><link rel="prefetch" href="/assets/js/17.3fc3cfc9.js"><link rel="prefetch" href="/assets/js/19.9a12d151.js"><link rel="prefetch" href="/assets/js/20.ae8086ab.js"><link rel="prefetch" href="/assets/js/21.3a42eaa3.js"><link rel="prefetch" href="/assets/js/22.4cfd6ba3.js"><link rel="prefetch" href="/assets/js/23.4e52ca9c.js"><link rel="prefetch" href="/assets/js/24.92cca420.js"><link rel="prefetch" href="/assets/js/25.2dca3474.js"><link rel="prefetch" href="/assets/js/26.4b21b77d.js"><link rel="prefetch" href="/assets/js/27.889e5e00.js"><link rel="prefetch" href="/assets/js/3.21bbc1d1.js"><link rel="prefetch" href="/assets/js/4.751d2560.js"><link rel="prefetch" href="/assets/js/5.5119b22b.js"><link rel="prefetch" href="/assets/js/6.fba7ee5b.js"><link rel="prefetch" href="/assets/js/8.e91fdeb1.js"><link rel="prefetch" href="/assets/js/9.dcec1540.js">
+    <link rel="preload" href="/assets/css/0.styles.bfa9bcb2.css" as="style"><link rel="preload" href="/assets/js/app.fc034a0b.js" as="script"><link rel="preload" href="/assets/js/7.19dbbf5a.js" as="script"><link rel="preload" href="/assets/js/17.d3b71c56.js" as="script"><link rel="prefetch" href="/assets/js/1.2a56419a.js"><link rel="prefetch" href="/assets/js/10.08b422bb.js"><link rel="prefetch" href="/assets/js/11.948e0b37.js"><link rel="prefetch" href="/assets/js/12.026bcf49.js"><link rel="prefetch" href="/assets/js/13.0a620df1.js"><link rel="prefetch" href="/assets/js/14.acf191d4.js"><link rel="prefetch" href="/assets/js/15.a4cae9e0.js"><link rel="prefetch" href="/assets/js/16.ac149f69.js"><link rel="prefetch" href="/assets/js/18.dd2d1086.js"><link rel="prefetch" href="/assets/js/19.02ab4b38.js"><link rel="prefetch" href="/assets/js/20.b8a13751.js"><link rel="prefetch" href="/assets/js/3.3d1bfa19.js"><link rel="prefetch" href="/assets/js/4.a3237716.js"><link rel="prefetch" href="/assets/js/5.831514b6.js"><link rel="prefetch" href="/assets/js/6.83b229ce.js"><link rel="prefetch" href="/assets/js/8.c5352b62.js"><link rel="prefetch" href="/assets/js/9.1bc56d06.js">
     <link rel="stylesheet" href="/assets/css/0.styles.bfa9bcb2.css">
   </head>
   <body>
@@ -26,8 +26,8 @@
       最后修改 : 2019-06-17
     </span></section> <section class="post-links" data-v-4e23451f><a href="/deployer/" class="post-link" data-v-4e23451f>
       上一篇 : 使用Git+Hooks实现Hexo站点自动部署到CentOS服务器上
-    </a> <a href="/stack/" class="post-link" data-v-4e23451f>
-      下一篇 : 栈 (Stack) 的使用
+    </a> <a href="/dp-note/" class="post-link" data-v-4e23451f>
+      下一篇 : dynamic-programming note (动态规划专题)
     </a></section></section> <article class="main-div"><div class="post-content content content__default"><p>由于NexT主题默认的背景是不透明的，如果我们设置的有<code>canvas_nest</code>和<code>canvas_three</code>等3D动画效果，则会被文章界面遮住，本文主要讲述如何修改Hexo站点的页面透明度。</p> <p>主要是通过修改CSS样式来实现</p> <h2 id="文章部分"><a href="#文章部分" class="header-anchor">#</a> 文章部分</h2> <div class="language-diff 文件位置 ~Hexo根目录/themes/next/source/css/_schemes/Gemini/index.styl extra-class"><pre class="language-diff"><code>// Post &amp; Comments blocks.
 .post-block {
 <span class="token unchanged">  padding: $content-desktop-padding;
@@ -113,8 +113,8 @@
       最后修改 : 2019-06-17
     </span></section> <section class="post-links" data-v-4e23451f><a href="/deployer/" class="post-link" data-v-4e23451f>
       上一篇 : 使用Git+Hooks实现Hexo站点自动部署到CentOS服务器上
-    </a> <a href="/stack/" class="post-link" data-v-4e23451f>
-      下一篇 : 栈 (Stack) 的使用
+    </a> <a href="/dp-note/" class="post-link" data-v-4e23451f>
+      下一篇 : dynamic-programming note (动态规划专题)
     </a></section></section> <div id="post-comments" class="main-div"><!----></div></div></main> <aside class="aside" data-v-4dd605a1><div class="info-card main-div" data-v-9d847660 data-v-4dd605a1><div class="info-card-header" data-v-9d847660><img src="/assets/img/avatar.jpg" alt="Junzhou" class="info-avatar" data-v-9d847660></div> <div class="info-card-body" data-v-9d847660><section class="info-nickname" data-v-9d847660>
       Junzhou
     </section> <section class="info-desc" data-v-9d847660>Happy Coding<br/>Happy Life</section> <section class="info-contact" data-v-9d847660><section data-v-9d847660><span title="XinYang City, China" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>XinYang City, China</title><use xlink:href="#icon-location" data-v-9d847660 data-v-9d847660></use></svg><span class="info-text" data-v-9d847660 data-v-9d847660>
@@ -123,11 +123,7 @@
           Junzhou2016@outlook.com
         </span></a></section></section></div> <div class="info-card-footer" data-v-9d847660><section class="info-sns clearfix" data-v-9d847660><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-9d847660><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1.5em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-9d847660 data-v-9d847660></use></svg></span></a></section></div></div> <div class="post-nav-card main-div" style="position:relative;top:0;width:0px;" data-v-4dd605a1><div class="post-nav-contents"><svg class="icon"><title>book</title><use xlink:href="#icon-book"></use></svg> <span>文章目录</span> <div class="post-nav-toc"><ul><li><a href="/page-background/#文章部分">文章部分</a></li><li><a href="/page-background/#阅读全文按钮">阅读全文按钮</a></li><li><a href="/page-background/#分页部分">分页部分</a></li><li><a href="/page-background/#评论区部分">评论区部分</a></li><li><a href="/page-background/#侧栏菜单界面">侧栏菜单界面</a></li><li><a href="/page-background/#个人资料界面">个人资料界面</a></li></ul></div></div> <div class="post-nav-comments"><svg class="icon"><title>comment</title><use xlink:href="#icon-comment"></use></svg> <a href="/page-background/#post-comments">
       评论
-    </a></div></div></aside></div> <footer class="footer" data-v-1375e54c><p class="footer-sns-links" data-v-1375e54c><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-1375e54c><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-1375e54c data-v-1375e54c></use></svg></span></a></p> <p class="footer-text" data-v-1375e54c><span data-v-1375e54c>Powered by </span> <a href="https://github.com/vuejs/vuepress" target="_blank" data-v-1375e54c>
-      VuePress
-    </a> <span data-v-1375e54c> | </span> <a href="https://github.com/meteorlxy/vuepress-theme-meteorlxy" target="_blank" data-v-1375e54c>
-        meteorlxy
-      </a></p> <!----></footer></div><div class="global-ui"><!----><!----></div></div>
-    <script src="/assets/js/app.81496316.js" defer></script><script src="/assets/js/7.19dbbf5a.js" defer></script><script src="/assets/js/18.9d57c44a.js" defer></script>
+    </a></div></div></aside></div> <footer class="footer" data-v-1375e54c><p class="footer-sns-links" data-v-1375e54c><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-1375e54c><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-1375e54c data-v-1375e54c></use></svg></span></a></p> <!----> <p class="footer-text" data-v-1375e54c>Copyright 2018-Junzhou | MIT License</p></footer></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.fc034a0b.js" defer></script><script src="/assets/js/7.19dbbf5a.js" defer></script><script src="/assets/js/17.d3b71c56.js" defer></script>
   </body>
 </html>
