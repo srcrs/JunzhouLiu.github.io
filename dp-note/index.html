@@ -3,31 +3,33 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>dynamic-programming note (动态规划专题) | JunzhouLiu</title>
+    <title>dynamic-programming note (动态规划专题) | Junzhou Liu</title>
     <meta name="description" content="Happy Coding">
     <meta name="generator" content="VuePress 1.3.1">
-    <link rel="preload" href="/assets/css/0.styles.bfa9bcb2.css" as="style"><link rel="preload" href="/assets/js/app.27663169.js" as="script"><link rel="preload" href="/assets/js/7.19dbbf5a.js" as="script"><link rel="preload" href="/assets/js/19.9a12d151.js" as="script"><link rel="prefetch" href="/assets/js/1.4c673430.js"><link rel="prefetch" href="/assets/js/10.08b422bb.js"><link rel="prefetch" href="/assets/js/11.69e66e60.js"><link rel="prefetch" href="/assets/js/12.3f4f4a1c.js"><link rel="prefetch" href="/assets/js/13.1333b1e2.js"><link rel="prefetch" href="/assets/js/14.3223853b.js"><link rel="prefetch" href="/assets/js/15.2dc5954e.js"><link rel="prefetch" href="/assets/js/16.bb54fcb5.js"><link rel="prefetch" href="/assets/js/17.3fc3cfc9.js"><link rel="prefetch" href="/assets/js/18.9d57c44a.js"><link rel="prefetch" href="/assets/js/20.ae8086ab.js"><link rel="prefetch" href="/assets/js/21.3a42eaa3.js"><link rel="prefetch" href="/assets/js/22.4cfd6ba3.js"><link rel="prefetch" href="/assets/js/23.4e52ca9c.js"><link rel="prefetch" href="/assets/js/24.92cca420.js"><link rel="prefetch" href="/assets/js/25.2dca3474.js"><link rel="prefetch" href="/assets/js/26.4b21b77d.js"><link rel="prefetch" href="/assets/js/27.889e5e00.js"><link rel="prefetch" href="/assets/js/3.21bbc1d1.js"><link rel="prefetch" href="/assets/js/4.751d2560.js"><link rel="prefetch" href="/assets/js/5.5119b22b.js"><link rel="prefetch" href="/assets/js/6.fba7ee5b.js"><link rel="prefetch" href="/assets/js/8.e91fdeb1.js"><link rel="prefetch" href="/assets/js/9.dcec1540.js">
-    <link rel="stylesheet" href="/assets/css/0.styles.bfa9bcb2.css">
+    <link rel="preload" href="/assets/css/0.styles.e441a9e3.css" as="style"><link rel="preload" href="/assets/js/app.3c6365c0.js" as="script"><link rel="preload" href="/assets/js/7.cac035ef.js" as="script"><link rel="preload" href="/assets/js/19.c953a3c7.js" as="script"><link rel="prefetch" href="/assets/js/1.d79108e2.js"><link rel="prefetch" href="/assets/js/10.55cb107b.js"><link rel="prefetch" href="/assets/js/11.718c5b4f.js"><link rel="prefetch" href="/assets/js/12.f19eb24f.js"><link rel="prefetch" href="/assets/js/13.8a5e1bc4.js"><link rel="prefetch" href="/assets/js/14.965f0577.js"><link rel="prefetch" href="/assets/js/15.c82d606e.js"><link rel="prefetch" href="/assets/js/16.a52fff5e.js"><link rel="prefetch" href="/assets/js/17.3fc3cfc9.js"><link rel="prefetch" href="/assets/js/18.2d9ac025.js"><link rel="prefetch" href="/assets/js/20.5d2c46e2.js"><link rel="prefetch" href="/assets/js/21.a3422768.js"><link rel="prefetch" href="/assets/js/22.aa7eeeee.js"><link rel="prefetch" href="/assets/js/3.3d1bfa19.js"><link rel="prefetch" href="/assets/js/4.a60ddeaf.js"><link rel="prefetch" href="/assets/js/5.377e7ebd.js"><link rel="prefetch" href="/assets/js/6.05c33382.js"><link rel="prefetch" href="/assets/js/8.48cc0272.js"><link rel="prefetch" href="/assets/js/9.a24d7002.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e441a9e3.css">
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div id="vuepress-theme-meteorlxy"><header class="header" data-v-7a046aea><div data-v-e4145d0a data-v-7a046aea><nav class="navbar" data-v-e4145d0a><div class="container" data-v-e4145d0a><a href="/" class="router-link-active" data-v-e4145d0a><span class="navbar-site-name" data-v-e4145d0a>
-          JunzhouLiu
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-meteorlxy"><header class="header" style="background-size:cover;background-repeat:no-repeat;background-position:center;background-attachment:scroll;background-image:url(/assets/img/head1.4.png);" data-v-7a046aea><div data-v-e4145d0a data-v-7a046aea><nav class="navbar" data-v-e4145d0a><div class="container" data-v-e4145d0a><a href="/" class="router-link-active" data-v-e4145d0a><span class="navbar-site-name" data-v-e4145d0a>
+          Junzhou Liu
         </span></a> <div class="navbar-toggler" data-v-e4145d0a><svg class="icon" style="font-size:1.2em;" data-v-e4145d0a data-v-e4145d0a><title data-v-e4145d0a data-v-e4145d0a>menu</title><use xlink:href="#icon-menu" data-v-e4145d0a data-v-e4145d0a></use></svg></div> <div class="navbar-links" data-v-e4145d0a><a href="/" class="navbar-link" data-v-e4145d0a>
             Home
           </a><a href="/posts/" class="navbar-link" data-v-e4145d0a>
             Post
+          </a><a href="/friend/" class="navbar-link" data-v-e4145d0a>
+            Friends
           </a><a href="/about/" class="navbar-link" data-v-e4145d0a>
-            About
+            AboutMe
           </a></div></div></nav> <div class="navbar-holder" style="display:none;" data-v-e4145d0a></div></div> <div class="banner" data-v-98d6aa8c data-v-7a046aea data-v-7a046aea><div class="container" data-v-98d6aa8c><div class="center" data-v-98d6aa8c><h1 data-v-98d6aa8c data-v-7a046aea>
           dynamic-programming note (动态规划专题)
         </h1></div></div></div></header> <div class="container clearfix show-aside" data-v-4dd605a1 data-v-4dd605a1><main class="main" data-v-4dd605a1><div class="post" data-v-4dd605a1 data-v-4dd605a1><section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
       发布时间 : 2019-03-22
     </span> <span class="update-date" data-v-4e23451f>
-      最后修改 : 2019-06-17
-    </span></section> <section class="post-links" data-v-4e23451f><a href="/week2/" class="post-link" data-v-4e23451f>
-      上一篇 : 赛前第二周 真题训练
-    </a> <a href="/posts/2019/06/17/_19-06-17-myderam.html" class="post-link" data-v-4e23451f>
-      下一篇 : 愿我心之所向便是今后的身之所往
+      最后修改 : 2020-03-08
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/page-background/" class="post-link" data-v-4e23451f>
+      上一篇 : Hexo-NexT主题修改页面透明度及页面颜色
+    </a> <a href="/posts/2019/08/05/_19-08-05-vscodeconfig.html" class="post-link" data-v-4e23451f>
+      下一篇 : VScode+GCC配置轻量级C++开发环境
     </a></section></section> <article class="main-div"><div class="post-content content content__default"><p>昨天在看DP算法，特意开篇文章记录下，加深一下印象。本文围绕著名的01背包展开讨论。
 </p> <h2 id="开始dp之前"><a href="#开始dp之前" class="header-anchor">#</a> 开始DP之前</h2> <p>提起DP，就给我一种难到天迹的感觉，实际上DP要是难起来也确实没边，通过学习DP算法也发现自己在逻辑推理以及阅读包含大量公式文章上的效率不足。</p> <p>在讲我对DP的理解之前，我想回顾下斐波那契数列（<code>Fibonacci sequence</code>），想必大家对这个并不陌生，就像下面这样。</p> <p>$${1,1,2,3,5,8,13,21····}$$</p> <p>我们已经知道斐波那契的计算公式为</p> <p>$$fib(n) =\left.
 \begin{cases}
@@ -133,24 +135,20 @@ $$</p> <p>看到这里，我们再思考一个问题，如果$Ci&gt;v$怎么办�
 </code></pre></div></div></article> <section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
       发布时间 : 2019-03-22
     </span> <span class="update-date" data-v-4e23451f>
-      最后修改 : 2019-06-17
-    </span></section> <section class="post-links" data-v-4e23451f><a href="/week2/" class="post-link" data-v-4e23451f>
-      上一篇 : 赛前第二周 真题训练
-    </a> <a href="/posts/2019/06/17/_19-06-17-myderam.html" class="post-link" data-v-4e23451f>
-      下一篇 : 愿我心之所向便是今后的身之所往
-    </a></section></section> <div id="post-comments" class="main-div"><!----></div></div></main> <aside class="aside" data-v-4dd605a1><div class="info-card main-div" data-v-9d847660 data-v-4dd605a1><div class="info-card-header" data-v-9d847660><img src="/assets/img/avatar.jpg" alt="Junzhou" class="info-avatar" data-v-9d847660></div> <div class="info-card-body" data-v-9d847660><section class="info-nickname" data-v-9d847660>
+      最后修改 : 2020-03-08
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/page-background/" class="post-link" data-v-4e23451f>
+      上一篇 : Hexo-NexT主题修改页面透明度及页面颜色
+    </a> <a href="/posts/2019/08/05/_19-08-05-vscodeconfig.html" class="post-link" data-v-4e23451f>
+      下一篇 : VScode+GCC配置轻量级C++开发环境
+    </a></section></section> <div id="post-comments" class="main-div"><!----></div></div></main> <aside class="aside" data-v-4dd605a1><div class="info-card main-div" data-v-9d847660 data-v-4dd605a1><div class="info-card-header" data-v-9d847660><img src="/assets/img/avatar.png" alt="Junzhou" class="info-avatar" data-v-9d847660></div> <div class="info-card-body" data-v-9d847660><section class="info-nickname" data-v-9d847660>
       Junzhou
-    </section> <section class="info-desc" data-v-9d847660>Happy Coding<br/>Happy Life</section> <section class="info-contact" data-v-9d847660><section data-v-9d847660><span title="XinYang City, China" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>XinYang City, China</title><use xlink:href="#icon-location" data-v-9d847660 data-v-9d847660></use></svg><span class="info-text" data-v-9d847660 data-v-9d847660>
+    </section> <section class="info-desc" data-v-9d847660>Happy Coding<br/>Happy Life<br/>Developer,Student</section> <section class="info-contact" data-v-9d847660><section data-v-9d847660><span title="XinYang City, China" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>XinYang City, China</title><use xlink:href="#icon-location" data-v-9d847660 data-v-9d847660></use></svg><span class="info-text" data-v-9d847660 data-v-9d847660>
           XinYang City, China
         </span></span></section> <!----> <section data-v-9d847660><a href="mailto:Junzhou2016@outlook.com" title="Junzhou2016@outlook.com" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>Junzhou2016@outlook.com</title><use xlink:href="#icon-email" data-v-9d847660 data-v-9d847660></use></svg><span class="info-text" data-v-9d847660 data-v-9d847660>
           Junzhou2016@outlook.com
         </span></a></section></section></div> <div class="info-card-footer" data-v-9d847660><section class="info-sns clearfix" data-v-9d847660><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-9d847660><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1.5em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-9d847660 data-v-9d847660></use></svg></span></a></section></div></div> <div class="post-nav-card main-div" style="position:relative;top:0;width:0px;" data-v-4dd605a1><div class="post-nav-contents"><svg class="icon"><title>book</title><use xlink:href="#icon-book"></use></svg> <span>文章目录</span> <div class="post-nav-toc"><ul><li><a href="/dp-note/#开始dp之前">开始DP之前</a></li><li><a href="/dp-note/#关于0-1-knapsack-problem-的思考过程">关于0/1 Knapsack Problem 的思考过程</a><ul><li><a href="/dp-note/#问题描述">问题描述</a></li><li><a href="/dp-note/#输入格式">输入格式</a></li><li><a href="/dp-note/#输出格式">输出格式</a></li><li><a href="/dp-note/#样例输入">样例输入</a></li><li><a href="/dp-note/#样例输出">样例输出</a></li><li><a href="/dp-note/#数据规模和约定">数据规模和约定</a></li></ul></li><li><a href="/dp-note/#首先是状态转移方程">首先是状态转移方程</a></li><li><a href="/dp-note/#算法设计和实现">算法设计和实现</a><ul><li><a href="/dp-note/#空间复杂度-o-nv">空间复杂度$O(NV)$</a></li><li><a href="/dp-note/#空间复杂度-o-v">空间复杂度$O(V)$</a></li></ul></li><li><a href="/dp-note/#实现代码">实现代码</a></li></ul></div></div> <div class="post-nav-comments"><svg class="icon"><title>comment</title><use xlink:href="#icon-comment"></use></svg> <a href="/dp-note/#post-comments">
       评论
-    </a></div></div></aside></div> <footer class="footer" data-v-1375e54c><p class="footer-sns-links" data-v-1375e54c><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-1375e54c><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-1375e54c data-v-1375e54c></use></svg></span></a></p> <p class="footer-text" data-v-1375e54c><span data-v-1375e54c>Powered by </span> <a href="https://github.com/vuejs/vuepress" target="_blank" data-v-1375e54c>
-      VuePress
-    </a> <span data-v-1375e54c> | </span> <a href="https://github.com/meteorlxy/vuepress-theme-meteorlxy" target="_blank" data-v-1375e54c>
-        meteorlxy
-      </a></p> <!----></footer></div><div class="global-ui"><!----><!----></div></div>
-    <script src="/assets/js/app.27663169.js" defer></script><script src="/assets/js/7.19dbbf5a.js" defer></script><script src="/assets/js/19.9a12d151.js" defer></script>
+    </a></div></div></aside></div> <footer class="footer" data-v-1375e54c><p class="footer-sns-links" data-v-1375e54c><a href="https://github.com/JunzhouLiu" target="_blank" class="sns-link" data-v-1375e54c><span title="GitHub: JunzhouLiu" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>GitHub: JunzhouLiu</title><use xlink:href="#icon-github" data-v-1375e54c data-v-1375e54c></use></svg></span></a></p> <!----> <p class="footer-text" data-v-1375e54c>Copyright 2018-2020 | Junzhou Liu<br/><a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备17043261号-1</a></p></footer></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.3c6365c0.js" defer></script><script src="/assets/js/7.cac035ef.js" defer></script><script src="/assets/js/19.c953a3c7.js" defer></script>
   </body>
 </html>
